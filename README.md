@@ -1,20 +1,27 @@
 # query
 
-**query** is a polyfill for the [query](http://dom.spec.whatwg.org/#dom-parentnode-query) and [queryAll](http://dom.spec.whatwg.org/#dom-parentnode-queryall) methods in the [DOM
-Living Standard](http://dom.spec.whatwg.org/).
+**query** is a polyfill for the [query] and [queryAll] methods and the [Elements] collection from the [DOM Living Standard].
+
+[query] is a context-aware version of querySelector, and [Elements] is a collection of nodes that can also run Array methods.
 
 ```html
-<body>
-	<h1>Heading</h1>
-</body>
+<section id="main-section">
+	<h1>First Heading</h1>
+
+	<section>
+		<h1>Subsection Heading</h1>
+	</section>
+</section>
 ```
 
 ```js
+main = document.getElementById('main-section');
+
 // querySelector has an unexpected quirk
-document.body.querySelector('html h1'); // returns h1 because it matches 'html h1'
+main.querySelector('section h1'); // returns the first heading because it technically matches
 
 // query works as expected
-document.body.query('html h1'); // returns null because html is not within body
+main.query('section h1'); // returns the subsection heading because it is context-aware
 ```
 
 This is extremely useful in context-sensitive situations.
@@ -34,15 +41,16 @@ This is extremely useful in context-sensitive situations.
 
 ```js
 document.query('ul').addEventListener('keydown', function (event) {
-	// if the down arrow was pressed
+	// if the down arrow was pressed from the menu
 	if (event.keyCode === 40) {
 		var anchor = event.target.closest('a');
 
-		// if an <a> was focused
+		// if an <a> was focused before keydown
 		if (anchor) {
+			// find the next <a> within a <ul> within this <li>
 			var childAnchor = anchor.parentNode.query('ul a');
 
-			// if the anchor’s parent has a <ul> with an <a>
+			// if one exists, focus it
 			if (childAnchor) {
 				childAnchor.focus();
 			}
@@ -79,4 +87,11 @@ If you like **query** and **queryAll** and would like to use it natively, convin
 
 ---
 
-[query.js](/query.js) is 1.12KB or 345B minified + gzipped.
+[query.js](/query.js) is 3.98KB or 570B minified + gzipped.
+
+[query.legacy.js](/query.legacy.js) is 4.29KB or 614B minified + gzipped.
+
+[Elements]: https://dom.spec.whatwg.org/#element-collections
+[DOM Living Standard]: http://dom.spec.whatwg.org/
+[query]: http://dom.spec.whatwg.org/#dom-parentnode-query
+[queryAll]: http://dom.spec.whatwg.org/#dom-parentnode-queryall
