@@ -1,0 +1,30 @@
+{
+	"name": "polyfill-query",
+	"version": "1.0.0",
+	"description": "A polyfill for DOM query, queryAll, and Elements",
+	"main": "query.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jonathantneal/query.git"
+	},
+	"keywords": [
+		"DOM",
+		"query",
+		"queryAll",
+		"Elements",
+		"Array",
+		"JavaScript",
+		"ECMA",
+		"polyfill",
+		"prollyfill"
+	],
+	"author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
+	"license": "CC0-1.0",
+	"bugs": {
+		"url": "https://github.com/jonathantneal/query/issues"
+	},
+	"homepage": "https://github.com/jonathantneal/query"
+}
