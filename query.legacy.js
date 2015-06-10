@@ -1,9 +1,21 @@
 (function () {
 	// cache Array filter
-	var filter = Array.prototype.filter;
+	var filter = Array.prototype.filter || function (callback) {
+		for (var index = 0, array = []; index < this.length; ++index) {
+			if (callback(this[index], index)) {
+				array.push(this[index]);
+			}
+		}
+
+		return array;
+	};
 
 	// cache Array forEach
-	var forEach = Array.prototype.forEach;
+	var forEach = Array.prototype.forEach || function (callback) {
+		for (var index = 0; index < this.length; ++index) {
+			callback(this[index], index);
+		}
+	};
 
 	// cache Array push
 	var push = Array.prototype.push;
